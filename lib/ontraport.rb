@@ -135,7 +135,6 @@ module Ontraport
   # @param params [Hash] parameters describing the conditions of the tag operation.
   # @return [Response]
   def self.tag_objects object_type, params
-
     objects_call :put, object_type, endpoint: '/objects/tag', data: params
   end
 
@@ -177,6 +176,14 @@ module Ontraport
                                     )
   end
 
+  def self.tag_by_name object_type, ids, add_names, params = {}
+    objects_call :put, object_type, endpoint: '/objects/tagByName',
+                                    data: params.update(
+                                      ids: Array(ids).join(','),
+                                      add_names: Array(add_names).join(',')
+                                    )
+  end
+  
   # Remove a subscription from an object.
   #
   # @example
