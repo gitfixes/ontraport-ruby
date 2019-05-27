@@ -179,8 +179,8 @@ module Ontraport
   def self.tag_by_name object_type, ids, add_names, params = {}
     objects_call :put, object_type, endpoint: '/objects/tagByName',
                                     data: params.update(
-                                      ids: Array(ids).join(','),
-                                      add_names: Array(add_names).join(',')
+                                      ids: ids.split(','),
+                                      add_names: add_names.split(',')
                                     )
   end
   
